@@ -8,10 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +18,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
+@Entity
 
 @Table(name="productTable")
 public class Product implements Serializable {
@@ -35,17 +32,34 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="product_id", nullable= false, updatable= false)
 	private int id;
-
+	
+	@Column(name="name")
 	private String name;
-
+	
+	@Column(name="category")
 	private String category;
 	
+	@Column(name="price")
 	private int price;
 
+	@Column(name="manufacturer")
 	private String manufacturer;
 
+	@Column(name="unit_in_stock")
 	private int unitInStock;
 
+	@Column(name="description")
 	private String description;
 	
+	public Product(String name, String category, int price, String manufacturer, int unitInStock,
+			String description) {
+		
+		this.name = name;
+		this.category = category;
+		this.price = price;
+		this.manufacturer = manufacturer;
+		this.unitInStock = unitInStock;
+		this.description = description;
+	}
+
 }
