@@ -76,28 +76,28 @@ public class ProductController {
 	}
 
 	@GetMapping(value = "products/category/{category}")
-	public ResponseEntity<List<Product>> findByCategory(@PathVariable String category) {
+	public ResponseEntity<List<Product>> findAllByCategory(@PathVariable String category) {
 		try {
-			List<Product> product = repository.findByCategory(category);
+			List<Product> products = repository.findAllByCategory(category);
 
-			if (product.isEmpty()) {
+			if (products.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-			return new ResponseEntity<>(product, HttpStatus.OK);
+			return new ResponseEntity<>(products, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 		}
 	}
 
 	@PutMapping("/products/{id}")
-	public ResponseEntity<Product> updateCustomer(@PathVariable("id") int id, @RequestBody Product product) {
+	public ResponseEntity<Product> updateProduct(@PathVariable("id") int id, @RequestBody Product product) {
 		Optional<Product> productData = repository.findById(id);
 
 		if (productData.isPresent()) {
 			Product _product = productData.get();
 			_product.setName(product.getName());
+			_product.setCategory(product.getCategory());
 			_product.setPrice(product.getPrice());
-			_product.setManufacturer(product.getManufacturer());
 			_product.setManufacturer(product.getManufacturer());
 			_product.setUnitInStock(product.getUnitInStock());
 			_product.setDescription(product.getDescription());
