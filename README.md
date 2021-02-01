@@ -4,7 +4,7 @@
 ## 서혁규 
 
 ## 조건
-* Database 이름: helloProductDB-학번, 예) helloProductDB-191111 
+* Database 이름: helloProductDB
 
 * Product Table 이름: productTable
 
